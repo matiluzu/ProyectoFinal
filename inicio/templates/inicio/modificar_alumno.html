@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title_head %}
+<title>Modificar Alumno</title>
+{% endblock title_head %}
+
+{% block h1_header %}
+Modificar Alumno {{alumno.nombre}} - {{alumno.apellido}}
+{% endblock h1_header %}
+
+{% block contenido %}
+
+<p>{{mensaje}}<p>
+
+<form action={% url "inicio:modificar_alumno" alumno.id%} method="post">
+    {% csrf_token %}
+    <table>
+        {{form}}
+    </table>
+    <button>Modificar</button>
+</form>
+
+{% endblock contenido %}

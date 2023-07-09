@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title_head %}
+<title>Alumno</title>
+{% endblock title_head %}
+
+{% block h1_header %}
+Alumno: {{alumno.nombre}} {{alumno.apellido}}
+{% endblock h1_header %}
+
+{% block contenido %}
+<li>DNI: {{alumno.dni}}</li>
+<li>Edad: {{alumno.edad}}</li>
+
+{% endblock contenido %}

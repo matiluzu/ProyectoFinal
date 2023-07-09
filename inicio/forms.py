@@ -7,4 +7,4 @@ class CrearAlumnoFormulario(forms.Form):
     dni = forms.IntegerField()
     
 class BuscarAlumnoFormulario(forms.Form):
-    dni = forms.IntegerField()
+    dni = forms.IntegerField(required=False)

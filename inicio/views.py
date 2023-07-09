@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from inicio.forms import CrearAlumnoFormulario, BuscarAlumnoFormulario 
 from inicio.models import Alumno
+from django.views.generic.edit import UpdateView, DeleteView
+from django.views.generic.detail import DetailView
+from django.urls import reverse_lazy
 
 # Create your views here.
 
@@ -27,8 +30,26 @@ def listar_alumnos(request):
     listado = []
     if formulario.is_valid():
         busqueda = formulario.cleaned_data["dni"]
-        listado = Alumno.objects.filter(dni=busqueda)
+        listado = Alumno.objects.filter(dni__contains=str(busqueda))
     else:
         print("DNI Not Found")
     
+    formulario = BuscarAlumnoFormulario()    
     return render(request, 'inicio/listar_alumnos.html',{'formulario':formulario, "alumnos":listado})
+
+
+class DetalleAlumno(DetailView):
+    model = Alumno
+    template_name = "inicio/detalle_alumno.html"
+
+class ModificarAlumno(UpdateView):
+    model = Alumno
+    fields = ["nombre","apellido","edad","dni"]
+    template_name = "inicio/modificar_alumno.html"
+    success_url= reverse_lazy("inicio:alumnos")
+
+
+class EliminarAlumno(DeleteView):
+    model = Alumno
+    template_name = "inicio/eliminar_alumno.html"
+    success_url= reverse_lazy("inicio:alumnos")

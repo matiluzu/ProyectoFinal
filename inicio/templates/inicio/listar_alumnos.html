@@ -8,13 +8,33 @@
 Alumnos
 {% endblock h1_header %}
 
+<a href={% url "inicio:crear_alumno" %}>Crear Alumno</a>
+
 {% block contenido %}
+<button>
+    <a class="navbar-brand" href={% url 'inicio:crear_alumno'%}>Crear Alumno</a>
+</button>
 <form action="" method="get">
     {{formulario}}
     <button>Buscar</button>
 </form>
 
+{% if alumnos %}
 {% for alumno in alumnos %}
-<li>Nombre: {{alumno.nombre}} - Apellido: {{alumno.apellido}}</li>
+<li>
+    Nombre: {{alumno.nombre}} - Apellido: {{alumno.apellido}}
+    <button>
+      <a href={% url 'inicio:detalle_alumno' alumno.id%}>Detalle</a>
+    </button>
+    <button>
+        <a href={% url 'inicio:modificar_alumno' alumno.id%}>Modificar</a>        
+    </button>
+    <button>
+        <a href={% url 'inicio:eliminar_alumno' alumno.id%}>Eliminar</a>        
+    </button>
+</li>
 {% endfor %}
+{% else %}
+<p> No se encontró al Alumno </p>
+{% endif %}
 {% endblock contenido %}
