@@ -4,12 +4,15 @@ from inicio.models import Alumno
 from django.views.generic.edit import UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
 def inicio(request):
     return render(request, 'inicio/inicio.html')
 
+@login_required
 def crear_alumno(request):
     mensaje = ''    
     if request.method == "POST":
@@ -42,14 +45,15 @@ class DetalleAlumno(DetailView):
     model = Alumno
     template_name = "inicio/detalle_alumno.html"
 
-class ModificarAlumno(UpdateView):
+
+class ModificarAlumno(LoginRequiredMixin, UpdateView):
     model = Alumno
     fields = ["nombre","apellido","edad","dni"]
     template_name = "inicio/modificar_alumno.html"
     success_url= reverse_lazy("inicio:alumnos")
 
 
-class EliminarAlumno(DeleteView):
+class EliminarAlumno(LoginRequiredMixin, DeleteView):
     model = Alumno
     template_name = "inicio/eliminar_alumno.html"
     success_url= reverse_lazy("inicio:alumnos")
