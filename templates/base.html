@@ -24,7 +24,10 @@
                 <a class="navbar-brand" href={% url 'inicio:inicio' %}>Inicio</a>
                 <a class="btn btn-primary" href={% url 'inicio:alumnos' %}>Alumnos</a>
                 {% if request.user.is_authenticated  %}
-                <a class="btn btn-primary" href='#'>{{request.user.username}}</a>
+                {%if request.user.infoextra.avatar%}
+                <img src={{request.user.infoextra.avatar.url}} alt='' height='50px'>
+                {% endif %}
+                <a class="btn btn-primary" href={% url 'usuario:edit_user' %}>{{request.user.username}}</a>
                 <a class="btn btn-primary" href={% url 'usuario:logout'%}>Logout</a>
                 {% else %}
                 <a class="btn btn-primary" href={% url 'usuario:login'%}>Login</a>
