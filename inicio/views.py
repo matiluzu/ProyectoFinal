@@ -19,7 +19,7 @@ def crear_alumno(request):
         formulario = CrearAlumnoFormulario(request.POST)
         if formulario.is_valid():
             info = formulario.cleaned_data
-            alumno = Alumno(nombre = info['nombre'],apellido = info['apellido'], edad=info['edad'], dni=info['dni'])
+            alumno = Alumno(nombre = info['nombre'],apellido = info['apellido'], edad=info['edad'], dni=info['dni'],f_alta=info['f_alta'] ,comentarios=info['comentarios'])
             alumno.save()
             mensaje = f'Se dio de alta a {alumno.nombre} como alumno'
         else:
@@ -48,7 +48,7 @@ class DetalleAlumno(DetailView):
 
 class ModificarAlumno(LoginRequiredMixin, UpdateView):
     model = Alumno
-    fields = ["nombre","apellido","edad","dni"]
+    fields = ["nombre","apellido","edad","dni","f_alta","comentarios"]
     template_name = "inicio/modificar_alumno.html"
     success_url= reverse_lazy("inicio:alumnos")
 

@@ -16,6 +16,7 @@ Modificar Alumno {{alumno.nombre}} - {{alumno.apellido}}
     {% csrf_token %}
     <table>
         {{form}}
+        {{form.media}}
     </table>
     <button>Modificar</button>
 </form>

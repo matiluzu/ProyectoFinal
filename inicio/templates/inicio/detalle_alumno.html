@@ -11,5 +11,7 @@ Alumno: {{alumno.nombre}} {{alumno.apellido}}
 {% block contenido %}
 <li>DNI: {{alumno.dni}}</li>
 <li>Edad: {{alumno.edad}}</li>
+<li>Fecha de alta: {{alumno.f_alta}}</li>
+<li>Comentarios: {{alumno.comentarios | safe}}</li>
 
 {% endblock contenido %}
