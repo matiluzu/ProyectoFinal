@@ -57,3 +57,6 @@ class EliminarAlumno(LoginRequiredMixin, DeleteView):
     model = Alumno
     template_name = "inicio/eliminar_alumno.html"
     success_url= reverse_lazy("inicio:alumnos")
+
+def about(request):
+    return render(request, 'inicio/about.html')
