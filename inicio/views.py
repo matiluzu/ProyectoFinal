@@ -32,10 +32,10 @@ def listar_alumnos(request):
     formulario = BuscarAlumnoFormulario(request.GET)
     listado = []
     if formulario.is_valid():
-        busqueda = formulario.cleaned_data["dni"]
-        listado = Alumno.objects.filter(dni__contains=str(busqueda))
+        busqueda = formulario.cleaned_data["nombre"]
+        listado = Alumno.objects.filter(nombre__icontains=busqueda)
     else:
-        print("DNI Not Found")
+        print("Name Not Found")
     
     formulario = BuscarAlumnoFormulario()    
     return render(request, 'inicio/listar_alumnos.html',{'formulario':formulario, "alumnos":listado})

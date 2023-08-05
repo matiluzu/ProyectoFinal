@@ -22,7 +22,7 @@ Alumnos
 {% if alumnos %}
 {% for alumno in alumnos %}
 <li>
-    Nombre: {{alumno.nombre}} - Apellido: {{alumno.apellido}}
+    Nombre: {{alumno.nombre}} - Apellido: {{alumno.apellido}} - DNI: {{alumno.dni}}
     <button>
       <a href={% url 'inicio:detalle_alumno' alumno.id%}>Detalle</a>
     </button>

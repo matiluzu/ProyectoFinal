@@ -10,4 +10,4 @@ class CrearAlumnoFormulario(forms.Form):
     comentarios=RichTextFormField()
     
 class BuscarAlumnoFormulario(forms.Form):
-    dni = forms.IntegerField(required=False)
+    nombre = forms.CharField(max_length=20,required=False)
